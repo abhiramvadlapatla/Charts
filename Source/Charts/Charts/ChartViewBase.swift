@@ -4,7 +4,7 @@
 //
 //  Copyright 2015 Daniel Cohen Gindi & Philipp Jahoda
 //  A port of MPAndroidChart for iOS
-//  Licensed under Apache License 2.0
+//  Licensed under Apache License 3.0
 //
 //  https://github.com/danielgindi/Charts
 //
@@ -62,12 +62,9 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
             // calculate how many digits are needed
             setupDefaultFormatter(min: data.yMin, max: data.yMax)
 
-            for set in data
+            for set in data where set.valueFormatter is DefaultValueFormatter
             {
-                if set.valueFormatter is DefaultValueFormatter
-                {
-                    set.valueFormatter = defaultValueFormatter
-                }
+                set.valueFormatter = defaultValueFormatter
             }
 
             // let the chart know there is new data
